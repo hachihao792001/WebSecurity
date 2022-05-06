@@ -1,4 +1,32 @@
-# Web security
+# Mục lục
+
+- [Web security](#web-security)
+  - [Giới thiệu](#giới-thiệu)
+  - [XSS attack](#xss-attack)
+    - [***Giới thiệu XSS attack***](#giới-thiệu-xss-attack)
+    - [***Phân loại và phương thức***](#phân-loại-và-phương-thức)
+      - [**Stored Cross-Site Scripting Attacks**](#stored-cross-site-scripting-attacks)
+      - [**Reflected Cross-Site Scripting Attacks**](#reflected-cross-site-scripting-attacks)
+      - [**DOM-Based Cross-Site Scripting Attacks**](#dom-based-cross-site-scripting-attacks)
+    - [***Phòng chống***](#phòng-chống)
+      - [**Escape dynamic content**](#escape-dynamic-content)
+      - [**Content Security Policy**](#content-security-policy)
+    - [***So sánh***](#so-sánh)
+  - [XSS request forgery](#xss-request-forgery)
+    - [Khái niệm XSS request forgery](#khái-niệm-xss-request-forgery)
+    - [Mục đích XSS request forgery](#mục-đích-xss-request-forgery)
+    - [Phương thức và phòng chống XSS request forgery](#phương-thức-và-phòng-chống-xss-request-forgery)
+  - [SQL Injection](#sql-injection)
+    - [Khái niệm SQL Injection](#khái-niệm-sql-injection)
+    - [Mục đích SQL Injection](#mục-đích-sql-injection)
+    - [Phương thức và phòng chống SQL Injection](#phương-thức-và-phòng-chống-sql-injection)
+  - [Clickjacking](#clickjacking)
+    - [***Khái niệm Clickjacking***](#khái-niệm-clickjacking)
+    - [***Phương pháp***](#phương-pháp)
+    - [***Phòng chống Clickjacking***](#phòng-chống-clickjacking)
+      - [**Frame busting**](#frame-busting)
+      - [**X-Frame-Options**](#x-frame-options)
+      - [**Phòng chống Clickjacking với Content Security Policy**](#phòng-chống-clickjacking-với-content-security-policy)
 
 ## Giới thiệu
 
