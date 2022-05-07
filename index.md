@@ -3,15 +3,15 @@
 - [Web security](#web-security)
   - [Giới thiệu](#giới-thiệu)
   - [XSS attack](#xss-attack)
-    - [***Giới thiệu XSS attack***](#giới-thiệu-xss-attack)
-    - [***Phân loại và phương thức***](#phân-loại-và-phương-thức)
+    - [**_Giới thiệu XSS attack_**](#giới-thiệu-xss-attack)
+    - [**_Phân loại và phương thức_**](#phân-loại-và-phương-thức)
       - [**Stored Cross-Site Scripting Attacks**](#stored-cross-site-scripting-attacks)
       - [**Reflected Cross-Site Scripting Attacks**](#reflected-cross-site-scripting-attacks)
       - [**DOM-Based Cross-Site Scripting Attacks**](#dom-based-cross-site-scripting-attacks)
-    - [***Phòng chống***](#phòng-chống)
+    - [**_Phòng chống_**](#phòng-chống)
       - [**Escape dynamic content**](#escape-dynamic-content)
       - [**Content Security Policy**](#content-security-policy)
-    - [***So sánh***](#so-sánh)
+    - [**_So sánh_**](#so-sánh)
   - [XSS request forgery](#xss-request-forgery)
     - [Khái niệm XSS request forgery](#khái-niệm-xss-request-forgery)
     - [Mục đích XSS request forgery](#mục-đích-xss-request-forgery)
@@ -21,9 +21,9 @@
     - [Mục đích SQL Injection](#mục-đích-sql-injection)
     - [Phương thức và phòng chống SQL Injection](#phương-thức-và-phòng-chống-sql-injection)
   - [Clickjacking](#clickjacking)
-    - [***Khái niệm Clickjacking***](#khái-niệm-clickjacking)
-    - [***Phương pháp***](#phương-pháp)
-    - [***Phòng chống Clickjacking***](#phòng-chống-clickjacking)
+    - [**_Khái niệm Clickjacking_**](#khái-niệm-clickjacking)
+    - [**_Phương pháp_**](#phương-pháp)
+    - [**_Phòng chống Clickjacking_**](#phòng-chống-clickjacking)
       - [**Frame busting**](#frame-busting)
       - [**X-Frame-Options**](#x-frame-options)
       - [**Phòng chống Clickjacking với Content Security Policy**](#phòng-chống-clickjacking-với-content-security-policy)
@@ -34,11 +34,11 @@ a
 
 ## XSS attack
 
-### ***Giới thiệu XSS attack***
+### **_Giới thiệu XSS attack_**
 
 Bình thường, các backend developer sẽ cố hết sức làm sao cho server của họ được an toàn và có độ bảo mật cao nhất có thể để tránh việc server bị hacker làm sập. Nhưng thua keo này ta bày keo khác, hacker thay vì nhắm tới server, thì họ sẽ quay sang nhắm tới browser của người dùng. Browser sẽ thực hiện mọi lệnh javascript mà nó có thể tìm thấy một cách không cảnh giác. Chính vì vậy, hacker có thể inject javascript code vào browser và chúng sẽ được thực hiện khi người dùng xem website, từ đó hacker có thể làm rất nhiều thứ bằng javascript trên browser của user, từ việc lấy cắp thông tin khi user nhập thông tin của họ, hay làm cho browser thực hiện một việc ngoài ý muốn của user (chẳng hạn như bình luận khắp mọi nơi mà user không hề biết). Việc inject javascript vào browser như vậy được gọi là Cross-site scripting (XSS) attack.
 
-### ***Phân loại và phương thức***
+### **_Phân loại và phương thức_**
 
 #### **Stored Cross-Site Scripting Attacks**
 
@@ -77,13 +77,13 @@ Hai cách tấn công trên đều có thông qua server (lưu vào database, hi
 Cụ thể, khi DOM-based XSS xảy ra, thì một tập dữ liệu có mã độc chảy từ một source sang 1 sink, trong đó source là nơi mà người dùng có thể nhập data vào, thường là URL, và sink là một lời gọi các hàm nguy hiểm ,các hàm nguy hiểm đó là:
 
 ```javascript
-document.write()
-document.writeln()
-document.domain
-element.innerHTML
-element.outerHTML
-element.insertAdjacentHTML
-element.onevent
+document.write();
+document.writeln();
+document.domain;
+element.innerHTML;
+element.outerHTML;
+element.insertAdjacentHTML;
+element.onevent;
 ```
 
 Nhưng tuỳ vào sink và cách website sử dụng chúng, kẻ tấn công phải suy nghĩ cách để inject được mã độc vào browser. Ví dụ như khi website sử dụng document.write() mà data mà kẻ tấn công đang nhắm tới được để trong cặp dấu ngoặc kép, thì kẻ tấn công phải thêm “> trước khi họ ghi `<script>` để đóng cặp ngoặc và element đó. Hoặc đối với innerHTML, thì tag `<script>` sẽ không được chạy, cho nên kẻ tấn công sẽ phải dùng các tag khác như img hay iframe để thực hiện XSS attack. Ví dụ:\
@@ -97,13 +97,15 @@ Theo lẽ thường thì fragment thường sẽ không được ghi ra thẳng 
 
 ```html
 <p id="a">
- <script>
-  queryPosition = document.location.href.indexOf("product=");
-  if(queryPosition >= 0){
-   var paramValue = decodeURIComponent(document.location.href.substring(queryPosition+8));
-  document.write(`Result:  ${decodeURIComponent(paramValue)}`);
- }
- </script>
+  <script>
+    queryPosition = document.location.href.indexOf('product=');
+    if (queryPosition >= 0) {
+      var paramValue = decodeURIComponent(
+        document.location.href.substring(queryPosition + 8)
+      );
+      document.write(`Result:  ${decodeURIComponent(paramValue)}`);
+    }
+  </script>
 </p>
 ```
 
@@ -115,7 +117,7 @@ Hoặc:
 
 Đều có thể làm hiện alert, nhưng hacker nếu được thì họ sẽ dùng cái bên dưới vì URI Fragment sẽ không được gửi lên cho server và được ghi vào log, làm cho các developer của website rất khó nhận ra lỗ hổng.
 
-### ***Phòng chống***
+### **_Phòng chống_**
 
 #### **Escape dynamic content**
 
@@ -148,28 +150,93 @@ Ngoài việc dùng để chặn việc chạy các đoạn javascript, thì ng�
 
 Content security policy có thể dùng để chống cả 3 loại XSS, ngoài ra nó còn có thể chống được nhiều loại tấn công khác.
 
-### ***So sánh***
+### **_So sánh_**
 
 Độ nguy hiểm của cả 3 loại XSS đều như nhau vì nó tùy thuộc vào những gì mà kẻ tấn công để vào đoạn javascript được inject vào browser.
 
-| Stored | Reflected | DOM-based |
-|--------|-----------|-----------|
-|Inject javascript vào csdl -> có giao tiếp với server -> xuất hiện trong server log|Inject javascript vào HTTP request -> có giao tiếp với server -> xuất hiện trong server log|Không giao tiếp với server -> Không xuất hiện trong server log -> khó phát hiện hơn|
-|Lưu vào database -> Mọi user truy cập đều trở thành nạn nhân -> Khả năng dẫn truyền cao|Phải lừa được người khác bấm vào URL được xây dựng -> khả năng dẫn truyền thấp|Phải lừa được người khác bấm vào URL được xây dựng -> khả năng dẫn truyền thấp
+| Stored                                                                                  | Reflected                                                                                   | DOM-based                                                                           |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Inject javascript vào csdl -> có giao tiếp với server -> xuất hiện trong server log     | Inject javascript vào HTTP request -> có giao tiếp với server -> xuất hiện trong server log | Không giao tiếp với server -> Không xuất hiện trong server log -> khó phát hiện hơn |
+| Lưu vào database -> Mọi user truy cập đều trở thành nạn nhân -> Khả năng dẫn truyền cao | Phải lừa được người khác bấm vào URL được xây dựng -> khả năng dẫn truyền thấp              | Phải lừa được người khác bấm vào URL được xây dựng -> khả năng dẫn truyền thấp      |
 
-## XSS request forgery
+## **CRSF Attack**
 
-### Khái niệm XSS request forgery
+### **Khái niệm CRSF Attack**
 
-abcd
+CSRF ( Cross Site Request Forgery) là kỹ thuật tấn công bằng cách sử dụng quyền chứng thực của người dùng đối với một website. CSRF là kỹ thuật tấn công vào người dùng, dựa vào đó hacker có thể thực thi những thao tác phải yêu cầu sự chứng thực. Nói cho dễ hiểu, khi bạn truy cập 1 trang web của Attacker, Attacker tự động tạo 1 request đến trang target mà tất cả các cookie được lưu trong trình duyệt của người dùng với trang target sẽ được tự động thêm vào. Nói cách khác, 1 phiên làm việc thuộc 1 trang lại có thể được sử dụng bởi trang khác. Đây chính là mấu chốt của việc tấn công CSRF.
 
-### Mục đích XSS request forgery
+### **Mục đích CRSF Attack**
 
-abcd
+Lợi dụng lỗ hổng thông qua CSRF, các hacker có thể lợi dụng để:
 
-### Phương thức và phòng chống XSS request forgery
+- Đánh cắp đi những dữ liệu bí mật.
+- Thực hiện phát tán worm lên mạng xã hội.
+- Cài đặt những phần mềm độc hại lên điện thoại di động.
+- Thực hiện khảo sát trực tuyến.
 
-abcd
+![twitter](images/worm_csrf.PNG 'twitter worm csrf attack')
+
+### **Phương thức và phòng chống CRSF Attack**
+
+#### **_Phương thức_**
+
+Các ứng dụng web hoạt động theo cơ chế nhận các câu lệnh HTTP từ người sử dụng, sau đó thực thi các câu lệnh này. Hacker sử dụng phương pháp CSRF để lừa trình duyệt của người dùng gửi đi các câu lệnh http đến các ứng dụng web. Điều đó có thể thực hiện bằng cách chèn mã độc hay link đến trang web mà người dùng đã được chứng thực. Trong trường hợp phiên làm việc của người dùng chưa hết hiệu lực thì các câu lệnh trên sẽ được thực hiện với quyền chứng thực của người sử dụng.
+
+Ví dụ để hiểu rõ hơn, khi ứng dụng web có một chức năng đơn giản đó là thay đổi mật khẩu người dùng. Việc gửi lên server theo phương thức HTTP GET thông thường. Nội dung gửi lên là password mới và confirm lại password vừa nhập:
+
+1. Người dùng đã đăng nhập trên web của bạn, cookie sẽ được tạo và lưu trữ dưới trình duyệt, khi bạn vào site lần sau bạn không cần phải đăng nhập lại. Giả sử bạn chưa đăng thoát, lúc này cookies của bạn vẫn còn hạn trong phiên làm việc.
+
+![user_session](images/user_session_crsf.png)
+
+2. Lúc này nếu website của bạn mắc lỗi CSRF, người dùng vô tình vào một trang hacker giả mạo với mục đích lấy tài khoản từ ứng dụng web của bạn. Trong trang giả mạo hacker sẽ chạy một url để cố ý reset mật khẩu người dùng trên trang của bạn:
+   https://website_cua_ban.com/accounts/?passwordnew=hacked&passwordconf=hacked&Change=Change#
+
+![attacker](images/hacker_crsf.png)
+
+3. Khi đó, ứng dụng web website_cua_ban.com sẽ nhận request và có chứng thực là người dùng hiện tại và thực hiện reset mật khẩu. Và nếu biết được username, hacker có thể dễ dàng lấy được quyền truy cập tài khoản của bạn.
+
+![crsf_attack](images/crsf_attack.PNG)
+
+#### **_Cách phòng chống_**
+
+Đối với từng đối tượng, chúng ta sẽ có các cách phòng chống khác nhau:
+
+**1. User**
+
+- Nên đăng xuất khỏi các website quan trọng: Tài khoản ngân hàng, thanh toán trực tuyến, các mạng xã hội, gmail… khi đã thực hiện xong giao dịch.
+- Nên login vào một máy riêng và không cho người thứ 2 tiếp xúc với máy đó.
+- Không nên click vào các đường dẫn mà bạn nhận được qua email, qua facebook … Khi bạn đưa chuột qua 1 đường dẫn, phía dưới bên trái của trình duyệt thường có địa chỉ website đích, bạn nên lưu ý để đến đúng trang mình muốn.
+- Không lưu các thông tin về mật khẩu tại trình duyệt của mình. Không nên chọn các phương thức “đăng nhập lần sau”, “lưu mật khẩu” …
+- Trong quá trình thực hiện giao dịch hay vào các website quan trọng không nên vào các website khác, có thể chứa các mã khai thác của kẻ tấn công.
+
+**2. Server**
+
+- **Sử dụng captcha, các thông báo xác nhận:** Captcha được sử dụng để nhận biết đối tượng đang thao tác với hệ thống là con người hay không. Các thao tác quan trọng như “đăng nhập” hay là “chuyển khoản” ,”thanh toán” thường là hay sử dụng captcha. Những chức năng quan trọng như reset mật khẩu, xác nhận thay đổi info của account cũng nên gửi url qua email đã đăng ký để người dùng có thể click vào xác nhận.
+
+![capcha](images/capcha.png)
+
+- **Sử dụng Token:** Các ứng dụng web nên nhúng một secret token. Các requests được thực hiện từ trang web này nên mang theo token đó, nếu không có sẽ được xem là cross-site request và sẽ không được thực thi đúng như mong muốn. Token này được tạo ra là duy nhất và khác nhau với mỗi phiên làm việc. Hàm tạo ra thường nhận đối số là SESSION hoặc TIME_STAMP. Phía Server khi nhận sẽ đối chiếu Token và quyết định có thực hiện hay không. (Ví dụ, JSW Token)
+
+- **Sử dụng Samesite Cookie:** Có 1 thuộc tính cookie mới, Chrome đã bắt đầu hỗ trợ vào ngày 29 tháng 3 và theo sau là các trình duyệt phổ biến khác. Đó được gọi là thuộc tính Cookie Same-Site. Các đội developer có thể chỉ dẫn cho trình duyệt kiểm soát xem cookie có được gửi cùng với request của trang web bên thứ 3 tạo ra hay không, bằng cách sử dụng thuộc tính cookie Same-Site. Đây là một giải pháp thiết thực hơn so với việc từ chối gửi cookie.
+
+Đặt thuộc tính Same-Site khá đơn giản, nó chỉ cần thêm giá trị SameSite vào cookie, ví dụ:
+
+```javascript
+  Set-Cookie: CookieName=CookieValue; SameSite=Lax;
+  Set-Cookie: CookieName=CookieValue; SameSite=Strict;
+```
+
+| SameSite=Strict                                                                                                                                                                                                                                                                                                                                                     | SameSite=Lax                                                                                                                                                                                                                                                                                                                        | SameSite=None                                                                                                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Như cái tên đã cho thấy rằng, đây là tùy chọn trong đó quy định Same-Site được áp dụng nghiêm ngặt. Khi thuộc tính SameSite được đặt là Strict, cookie sẽ không được gửi cùng với các request được bắt đầu bởi các trang web của bên thứ 3.                                                                                                                         | Để tăng sự tiện dụng nhưng vẫn duy trì tính an toàn nhất định, hãy đặt SameSite = Lax. Với cài đặt này, trình duyệt sẽ cho phép chia sẻ cookie giữa các trang web có cùng tên miền bắt chéo với nhau bắt nguồn từ yêu cầu GET cấp cao nhất. Do phương thức POST là kiểu HTTP "không an toàn" nên Cookie k được gửi khi SameSite=Lax | Việc sử dụng Cookie sẽ bình thường như trước đây khi có thể chia sẻ thông tin giữa bất cứ trang web nào với nhau. Với thiết lập này, rất thận trọng xem xét thông tin gì thì lưu ở Cookie và thông tin nào không.                   |
+| Đặt cookie là Strict có thể ảnh hưởng tiêu cực đến trải nghiệm duyệt web. Ví dụ: nếu bạn nhấp vào 1 liên kết dẫn đến trang profile của Facebook, và Facebook.com đặt cookie của nó là SameSite=Strict thì bạn không thể tiếp tục redirect trên Facebook trừ khi bạn đăng nhập lại vào Facebook. Lý do là vì Cookie của Facebook không được gửi kèm với request này. | Như vậy 2 trang web có thể chia sẻ dữ liệu cookie cho nhau miễn nó thuộc cùng một miền chéo, ví dụ hai web có cùng domain chính với nhau.                                                                                                                                                                                           | Người dùng sẽ có nhiều thuận lợi khi nhờ thông tin cá nhân được lưu trữ mà các trang web sẽ tối ưu để cá nhân hóa theo trải nghiệm của riêng họ. Đánh đổi lại là nguy cơ bảo mật bị các trang web lừa đảo ăn cắp thông tin cá nhân. |
+
+### **CRSF hiện nay**
+
+- Có vẻ như thuộc tính cookie SameSite là một biện pháp bảo mật hiệu quả chống lại các cuộc tấn công CSRF.
+- Sự phổ biến của CSRF đang đi xuống, chứng minh cho điều này thì CSRF đang ở vị trí thứ 5 danh sách Top 10 của OWASP được công bố vào năm 2010, nhưng nó lại xuống vị trí thứ 8 vào năm 2013. Và bây giờ chúng ta k thấy nó xuất hiện trong danh sách Top 10 của OWASP nữa.
+- Trình duyệt phổ biến nhất hiện nay là Google Chrome cũng đã có cập nhật về SameSite, cùng với Firefox ở phiên bản FireFox69 và các browser khác.
+- Vì vậy, ngày nay, tấn công CSRF đã gần như biến mất.
 
 ## SQL Injection
 
@@ -187,7 +254,7 @@ abcd
 
 ## Clickjacking
 
-### ***Khái niệm Clickjacking***
+### **_Khái niệm Clickjacking_**
 
 HTML có cho phép các lập trình viên có thể hiện nội dung của trang web khác bằng tag iframe, từ đó cho phép nội dung của các trang web có thể hoà trộn lẫn nhau nhưng vẫn có thể quản lý tốt được vì javascript từ trang web trong iframe không được chạy trong trang web mà dùng tag iframe.
 
@@ -195,7 +262,7 @@ Nhưng các hacker luôn tìm cách lợi dụng mọi thứ có lợi với h�
 
 Mấu chốt của clickjacking là ta phải để url của web chúng ta gần giống với url của web bị tấn công, để khi user có typo trong việc nhập url thì vô tình họ sẽ vào web của chúng ta mà không hề biết, vì ta đã làm web của mình giống với web bị tấn công.
 
-### ***Phương pháp***
+### **_Phương pháp_**
 
 Ví dụ ta muốn thực hiện tấn công một web <http://www.victim.com>, thì ta để
 
@@ -206,12 +273,12 @@ CSS:
 
 ```css
 iframe {
- height: 100vh;
- width: 100vw;
- border: none;
- position: absolute;
- left: 0;
- top: 0;
+  height: 100vh;
+  width: 100vw;
+  border: none;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 ```
 
@@ -227,7 +294,7 @@ background-color: transparent;
 Còn về vị trí, kích thước, thì ta có thể dùng các thuộc tính như `width, height, margin, padding, position, top, left, …` để xếp button đúng chỗ ta cần.
 Sau cùng thì ta phải làm cho button đó có lợi cho chúng ta, ta có thể để một tag `anchor` bên trong nó và dẫn `href` tới một website khác của mình, hay ta có thể dùng attribute `onclick` và gọi một hàm javascript và từ đó ta có thể làm được rất nhiều thứ khác.
 
-### ***Phòng chống Clickjacking***
+### **_Phòng chống Clickjacking_**
 
 #### **Frame busting**
 
@@ -236,7 +303,7 @@ Ta có thể làm điều trên như sau:
 
 ```javascript
 if (window.top != window.self) {
- top.location = self.location;
+  top.location = self.location;
 }
 ```
 
