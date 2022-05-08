@@ -63,10 +63,10 @@ Và website sẽ hiển thị lại thông báo kết quả cho người dùng n
 `<p>Kết quả tìm kiếm cho coffee</p>`
 
 Giả sử người làm ra website này không có biện pháp phòng chống nào cho reflected XSS, thì kẻ tấn công có thể nhập url như sau:\
-`https://mywebsite.com/search?product>=<script>alert(“hehe”);</script>`
+`https://mywebsite.com/search?product>=<script>alert("hehe");</script>`
 
 Và website sẽ hiển thị trong HTML:\
-`<p>Kết quả tìm kiếm cho <script>alert(“hehe”);</script></p>`
+`<p>Kết quả tìm kiếm cho <script>alert("hehe");</script></p>`
 
 Như vậy, ta thấy là hacker cũng có thể inject javascript vào HTTP Request, cụ thể trong trường hợp này là URL trong HTTP Request, để browser thực hiện các lệnh javascript ấy nhằm các mục đích nguy hiểm. Tuy nhiên để dạng tấn công này được hiệu quả thì hacker phải lừa được người dùng khác nhấn vào URL mà hacker đã xây dựng, thì cuộc tấn công mới được thực hiện.
 
@@ -256,9 +256,9 @@ abcd
 
 ### **_Khái niệm Clickjacking_**
 
-HTML có cho phép các lập trình viên có thể hiện nội dung của trang web khác bằng tag iframe, từ đó cho phép nội dung của các trang web có thể hoà trộn lẫn nhau nhưng vẫn có thể quản lý tốt được vì javascript từ trang web trong iframe không được chạy trong trang web mà dùng tag iframe.
+HTML có cho phép các lập trình viên có thể hiện nội dung của trang web khác bằng tag `iframe`, từ đó cho phép nội dung của các trang web có thể hoà trộn lẫn nhau nhưng vẫn có thể quản lý tốt được vì javascript từ trang web trong iframe không được chạy trong trang web mà dùng tag `iframe`.
 
-Nhưng các hacker luôn tìm cách lợi dụng mọi thứ có lợi với họ, và iframe là điều không ngoại lệ. Họ có thể dùng tag iframe để hiện trang web của người khác trong trang web của mình, nhưng để một nút tàng hình lên trên một nút khác để lừa người dùng bấm vào, khi người dùng bấm vào thì kẻ tấn công có thể chạy javascript hoặc dẫn browser tới một website khác và thực hiện vô vàn các điều nguy hiểm. Lúc đó kẻ tấn công đã hijack (chiếm đoạt) cú click của user, hoặc có thể gọi tắt là Clickjacking.
+Nhưng các hacker luôn tìm cách lợi dụng mọi thứ có lợi với họ, và `iframe` là điều không ngoại lệ. Họ có thể dùng tag `iframe` để hiện trang web của người khác trong trang web của mình, nhưng để một nút tàng hình lên trên một nút khác để lừa người dùng bấm vào, khi người dùng bấm vào thì kẻ tấn công có thể chạy javascript hoặc dẫn browser tới một website khác và thực hiện vô vàn các điều nguy hiểm. Lúc đó kẻ tấn công đã hijack (chiếm đoạt) cú click của user, hoặc có thể gọi tắt là Clickjacking.
 
 Mấu chốt của clickjacking là ta phải để url của web chúng ta gần giống với url của web bị tấn công, để khi user có typo trong việc nhập url thì vô tình họ sẽ vào web của chúng ta mà không hề biết, vì ta đã làm web của mình giống với web bị tấn công.
 
@@ -282,16 +282,16 @@ iframe {
 }
 ```
 
-Ta dùng đơn vị vw, vh (viewport width/height) cho width, height để cho iframe có thể chiếm 100% kích thước page, và sử dụng position là absolute để nó có thể giữ nguyên tại một toạ độ cụ thể (0, 0). Thì lúc này website của chúng ta sẽ giống y hệt web bị tấn công.
+Ta dùng đơn vị `vw, vh (viewport width/height)` cho `width, height` để cho `iframe` có thể chiếm 100% kích thước page, và sử dụng `position` là `absolute` để nó có thể giữ nguyên tại một toạ độ cụ thể (0, 0). Thì lúc này website của chúng ta sẽ giống y hệt web bị tấn công.
 
-Tiếp theo là bước tạo một button tàng hình và để nó lên một button nào đó của trang web gốc, kích thước, các cạnh càng giống nhau càng tốt. CSS để làm button đó tàng hình có thể là như sau:
+Tiếp theo là bước tạo một `button` tàng hình và để nó lên một button nào đó của trang web gốc, kích thước, các cạnh càng giống nhau càng tốt. CSS để làm button đó tàng hình có thể là như sau:
 
 ```css
 color: transparent;
 background-color: transparent;
 ```
 
-Còn về vị trí, kích thước, thì ta có thể dùng các thuộc tính như `width, height, margin, padding, position, top, left, …` để xếp button đúng chỗ ta cần.
+Còn về vị trí, kích thước, thì ta có thể dùng các thuộc tính như `width, height, margin, padding, position, top, left,...` để xếp button đúng chỗ ta cần.
 Sau cùng thì ta phải làm cho button đó có lợi cho chúng ta, ta có thể để một tag `anchor` bên trong nó và dẫn `href` tới một website khác của mình, hay ta có thể dùng attribute `onclick` và gọi một hàm javascript và từ đó ta có thể làm được rất nhiều thứ khác.
 
 ### **_Phòng chống Clickjacking_**
@@ -307,10 +307,10 @@ if (window.top != window.self) {
 }
 ```
 
-Tuy nhiên kẻ tấn công có nhiều cách để vô hiệu hoá kỹ thuật này, một trong những cách đó là sử dụng thuộc tính sandbox:
+Tuy nhiên kẻ tấn công có nhiều cách để vô hiệu hoá kỹ thuật này, một trong những cách đó là sử dụng thuộc tính sandbox:\
 `<iframe src="http://www.victim.com/" sandbox=""></iframe>`
 
-Công dụng của thuộc tính sandbox đó chính là khai báo tính năng nào của website trong iframe nên được sử dụng, tính năng nào không, như khả năng download hay chạy script bằng cú pháp allow-... . Còn nếu để trống thì mọi tính năng đều bị vô hiệu hoá, trong đó có khả năng chạy script của website trong iframe. Xem thêm ở
+Công dụng của thuộc tính `sandbox` đó chính là khai báo tính năng nào của website trong `iframe` nên được sử dụng, tính năng nào không, như khả năng download hay chạy script bằng cú pháp `allow-...` . Còn nếu để trống thì mọi tính năng đều bị vô hiệu hoá, trong đó có khả năng chạy script của website trong `iframe`. Xem thêm ở
 <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-sandbox>
 
 #### **X-Frame-Options**
@@ -320,15 +320,15 @@ Khi ta không thể chống Clickjacking từ phía frontend, ta chỉ có thể
 Ta chỉ có thể để XFO vào trong HTTP header, chứ không thể để trong tag meta của file HTML. Ví dụ với Apache, để phòng chống clickjacking ta để như sau:\
 `Header set X-Frame-Options "DENY"`
 
-“DENY” có nghĩa là trang web đó không thể được hiện trong bất kỳ frame nào, dù cho nó là của ai, ở đâu. Ngoài ra còn có options “SAMEORIGIN”, đó là chỉ được xuất hiện trong cùng nguồn gốc của website trong frame.
+`"DENY"` có nghĩa là trang web đó không thể được hiện trong bất kỳ frame nào, dù cho nó là của ai, ở đâu. Ngoài ra còn có options `"SAMEORIGIN"`, đó là chỉ được xuất hiện trong cùng nguồn gốc của website trong frame.
 
 Xem thêm ở <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options>
 
 #### **Phòng chống Clickjacking với Content Security Policy**
 
-Như đã có nhắc tới ở phần XSS attack, Content Security Policy (CSP) ngoài chống được XSS attack, còn có thể chống được nhiều loại tấn công khác, trong đó có Clickjacking. Để chống được Clickjacking bằng CSP, ta chỉ cần sử dụng directive frame-ancestors:
-Content-Security-Policy: frame-ancestors ‘none’;
+Như đã có nhắc tới ở phần XSS attack, Content Security Policy (CSP) ngoài chống được XSS attack, còn có thể chống được nhiều loại tấn công khác, trong đó có Clickjacking. Để chống được Clickjacking bằng CSP, ta chỉ cần sử dụng directive `frame-ancestors`:\
+`Content-Security-Policy: frame-ancestors 'none';`
 
-‘none’ có nghĩa là không thể có frame nào chứa được website của mình, dù có là từ đâu, ở đâu. Ngoài ra ta có thể dùng ‘self’, hay một website cụ thể để chỉ có thể để trong `<iframe>` của chính website đó, hay một website mà mình tin tưởng. Nhưng điều lý tưởng là đừng nên cho ai để website của mình vào 1 frame.
+`'none'` có nghĩa là không thể có frame nào chứa được website của mình, dù có là từ đâu, ở đâu. Ngoài ra ta có thể dùng `'self'`, hay một website cụ thể để chỉ có thể để trong `<iframe>` của chính website đó, hay một website mà mình tin tưởng. Nhưng điều lý tưởng là đừng nên cho ai để website của mình vào 1 frame.
 
 Xem thêm ở <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors>
