@@ -1,41 +1,41 @@
 # Mục lục
 
-- [Mục lục](#mục-lục)
-	- [Giới thiệu](#giới-thiệu)
-	- [XSS attack](#xss-attack)
-		- [**_Giới thiệu XSS attack_**](#giới-thiệu-xss-attack)
-		- [**_Phân loại và phương thức_**](#phân-loại-và-phương-thức)
-			- [**Stored Cross-Site Scripting Attacks**](#stored-cross-site-scripting-attacks)
-			- [**Reflected Cross-Site Scripting Attacks**](#reflected-cross-site-scripting-attacks)
-			- [**DOM-Based Cross-Site Scripting Attacks**](#dom-based-cross-site-scripting-attacks)
-		- [**_Phòng chống_**](#phòng-chống)
-			- [**Escape dynamic content**](#escape-dynamic-content)
-			- [**Content Security Policy**](#content-security-policy)
-		- [**_So sánh_**](#so-sánh)
-	- [**CRSF Attack**](#crsf-attack)
-		- [**Khái niệm CRSF Attack**](#khái-niệm-crsf-attack)
-		- [**Mục đích CRSF Attack**](#mục-đích-crsf-attack)
-		- [**Phương thức và phòng chống CRSF Attack**](#phương-thức-và-phòng-chống-crsf-attack)
-			- [**_Phương thức_**](#phương-thức)
-			- [**_Cách phòng chống_**](#cách-phòng-chống)
-		- [**CRSF hiện nay**](#crsf-hiện-nay)
-	- [SQL Injection](#sql-injection)
-		- [**Khái niệm**](#khái-niệm)
-			- [**_Injection Attack_**](#injection-attack)
-			- [**_SQL Injection_**](#sql-injection-1)
-			- [**_Một số cuộc tấn công_**](#một-số-cuộc-tấn-công)
-		- [**Mục đích**](#mục-đích)
-		- [**Phương thức và phòng chống SQL Injection**](#phương-thức-và-phòng-chống-sql-injection)
-			- [**_Phương thức_**](#phương-thức-1)
-			- [**_Demo_**](#demo)
-			- [**_Phòng chống_**](#phòng-chống-1)
-	- [Clickjacking](#clickjacking)
-		- [**_Khái niệm Clickjacking_**](#khái-niệm-clickjacking)
-		- [**_Phương pháp_**](#phương-pháp)
-		- [**_Phòng chống Clickjacking_**](#phòng-chống-clickjacking)
-			- [**Frame busting**](#frame-busting)
-			- [**X-Frame-Options**](#x-frame-options)
-			- [**Phòng chống Clickjacking với Content Security Policy**](#phòng-chống-clickjacking-với-content-security-policy)
+-   [Mục lục](#mục-lục)
+    -   [Giới thiệu](#giới-thiệu)
+    -   [XSS attack](#xss-attack)
+        -   [**_Giới thiệu XSS attack_**](#giới-thiệu-xss-attack)
+        -   [**_Phân loại và phương thức_**](#phân-loại-và-phương-thức)
+            -   [**Stored Cross-Site Scripting Attacks**](#stored-cross-site-scripting-attacks)
+            -   [**Reflected Cross-Site Scripting Attacks**](#reflected-cross-site-scripting-attacks)
+            -   [**DOM-Based Cross-Site Scripting Attacks**](#dom-based-cross-site-scripting-attacks)
+        -   [**_Phòng chống_**](#phòng-chống)
+            -   [**Escape dynamic content**](#escape-dynamic-content)
+            -   [**Content Security Policy**](#content-security-policy)
+        -   [**_So sánh_**](#so-sánh)
+    -   [**CRSF Attack**](#crsf-attack)
+        -   [**Khái niệm CRSF Attack**](#khái-niệm-crsf-attack)
+        -   [**Mục đích CRSF Attack**](#mục-đích-crsf-attack)
+        -   [**Phương thức và phòng chống CRSF Attack**](#phương-thức-và-phòng-chống-crsf-attack)
+            -   [**_Phương thức_**](#phương-thức)
+            -   [**_Cách phòng chống_**](#cách-phòng-chống)
+        -   [**CRSF hiện nay**](#crsf-hiện-nay)
+    -   [SQL Injection](#sql-injection)
+        -   [**Khái niệm**](#khái-niệm)
+            -   [**_Injection Attack_**](#injection-attack)
+            -   [**_SQL Injection_**](#sql-injection-1)
+            -   [**_Một số cuộc tấn công_**](#một-số-cuộc-tấn-công)
+        -   [**Mục đích**](#mục-đích)
+        -   [**Phương thức và phòng chống SQL Injection**](#phương-thức-và-phòng-chống-sql-injection)
+            -   [**_Phương thức_**](#phương-thức-1)
+            -   [**_Demo_**](#demo)
+            -   [**_Phòng chống_**](#phòng-chống-1)
+    -   [Clickjacking](#clickjacking)
+        -   [**_Khái niệm Clickjacking_**](#khái-niệm-clickjacking)
+        -   [**_Phương pháp_**](#phương-pháp)
+        -   [**_Phòng chống Clickjacking_**](#phòng-chống-clickjacking)
+            -   [**Frame busting**](#frame-busting)
+            -   [**X-Frame-Options**](#x-frame-options)
+            -   [**Phòng chống Clickjacking với Content Security Policy**](#phòng-chống-clickjacking-với-content-security-policy)
 
 ## Giới thiệu
 
@@ -264,9 +264,9 @@ Hacker có thể dùng các lệnh SQL để đánh cắp hoặc phá hoại d�
 
 #### **_Một số cuộc tấn công_**
 
--   Nhiều cơ quan, trường học của Mỹ bị tấn công bởi lỗ hổng SQL Injection: https://vtv.vn/cong-nghe/diem-mat-nhung-vu-tan-cong-mang-am-i-nhat-gan-day-20180923215527881.htm
+-   Nhiều cơ quan, trường học của Mỹ bị tấn công bởi lỗ hổng SQL Injection: <https://vtv.vn/cong-nghe/diem-mat-nhung-vu-tan-cong-mang-am-i-nhat-gan-day-20180923215527881.htm>
     ![SQL Injection attack](images/SQL_Injection_attack_2.png "SQL Injection attack 1")
--   BKAV cũng bị tấn công bởi lỗ hổng SQL Injection: https://vnexpress.net/hacker-da-tan-cong-bkav-tu-mot-loi-co-ban-4341131.html
+-   BKAV cũng bị tấn công bởi lỗ hổng SQL Injection: <https://vnexpress.net/hacker-da-tan-cong-bkav-tu-mot-loi-co-ban-4341131.html>
     ![SQL Injection attack](images/SQL_Injection_attack_1.png "SQL Injection attack 2")
 
 ### **Mục đích**
@@ -288,7 +288,7 @@ Hacker có thể kiểm tra lỗ hổng này rất dễ dàng. Chỉ cần nhậ
 
 #### **_Demo_**
 
-Được thực hiện trang trang: https://www.hacksplaining.com/exercises/sql-injection
+Được thực hiện trang trang: <https://www.hacksplaining.com/exercises/sql-injection>
 
 -   Thử nhập `email = user@email.com` và `password = password`, server trả về lỗi “Unknown email or password.” như bình thường.
     ![SQL Injection step](images/SQL_Injection_step_1.png "SQL Injection step 1")
