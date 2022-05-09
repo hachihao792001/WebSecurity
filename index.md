@@ -30,7 +30,9 @@
 
 ## Giới thiệu
 
-a
+Web Security luôn là vấn đề đau đầu của các quản trị viên website. Các lỗ hổng bảo mật cho phép tin tặc khai thác – tấn công – xâm nhập – vi phạm dữ liệu của website doanh nghiệp. Do đó, việc hiểu biết và ngăn chặn các lỗ hổng bảo mật website là một trong những công việc quan trọng để xây dựng một trang web an toàn và hoàn thiện.
+
+OWASP là một tiêu chuẩn toàn cầu để phục vụ việc kiểm thử xâm nhập – Penetration Testing (Pentest) được dễ dàng hơn. Tiêu chuẩn này được đề xuất bởi một tổ chức phi lợi nhuận: Open Web Application Security Project (OWASP). Tiêu chuẩn OWASP giúp cho các chuyên gia kiểm thử (pentester) kiểm tra bảo mật cho website một cách chi tiết, hiệu quả. Hằng năm, OWASP đều công bố top 10 lỗ hổng bảo mật phổ biến mà các trang web lớn nhỏ đều mắc phải. Sau đây, chúng tôi sẽ giới thiệu một vài lỗ hổng bảo mật mà các trang web thường mắc phải cũng như cách để ngăn chặn chúng.
 
 ## XSS attack
 
