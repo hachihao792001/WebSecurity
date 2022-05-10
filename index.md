@@ -1,5 +1,13 @@
 # Web Security: Common Vulnerability and Prevention
 
+## Thành viên
+
+- 19120219 Hà Chí Hào
+- 19120384 Nguyễn Trung Thời
+- 19120476 Trần Phương Đình
+
+## Mục lục
+
 - [Mục lục](#mục-lục)
   - [Giới thiệu](#giới-thiệu)
   - [XSS attack](#xss-attack)
