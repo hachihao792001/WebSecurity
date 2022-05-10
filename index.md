@@ -1,41 +1,41 @@
-# Mục lục
+# Web Security: Common Vulnerability and Prevention
 
--   [Mục lục](#mục-lục)
-    -   [Giới thiệu](#giới-thiệu)
-    -   [XSS attack](#xss-attack)
-        -   [**_Giới thiệu XSS attack_**](#giới-thiệu-xss-attack)
-        -   [**_Phân loại và phương thức_**](#phân-loại-và-phương-thức)
-            -   [**Stored Cross-Site Scripting Attacks**](#stored-cross-site-scripting-attacks)
-            -   [**Reflected Cross-Site Scripting Attacks**](#reflected-cross-site-scripting-attacks)
-            -   [**DOM-Based Cross-Site Scripting Attacks**](#dom-based-cross-site-scripting-attacks)
-        -   [**_Phòng chống_**](#phòng-chống)
-            -   [**Escape dynamic content**](#escape-dynamic-content)
-            -   [**Content Security Policy**](#content-security-policy)
-        -   [**_So sánh_**](#so-sánh)
-    -   [**CRSF Attack**](#crsf-attack)
-        -   [**Khái niệm CRSF Attack**](#khái-niệm-crsf-attack)
-        -   [**Mục đích CRSF Attack**](#mục-đích-crsf-attack)
-        -   [**Phương thức và phòng chống CRSF Attack**](#phương-thức-và-phòng-chống-crsf-attack)
-            -   [**_Phương thức_**](#phương-thức)
-            -   [**_Cách phòng chống_**](#cách-phòng-chống)
-        -   [**CRSF hiện nay**](#crsf-hiện-nay)
-    -   [SQL Injection](#sql-injection)
-        -   [**Khái niệm**](#khái-niệm)
-            -   [**_Injection Attack_**](#injection-attack)
-            -   [**_SQL Injection_**](#sql-injection-1)
-            -   [**_Một số cuộc tấn công_**](#một-số-cuộc-tấn-công)
-        -   [**Mục đích**](#mục-đích)
-        -   [**Phương thức và phòng chống SQL Injection**](#phương-thức-và-phòng-chống-sql-injection)
-            -   [**_Phương thức_**](#phương-thức-1)
-            -   [**_Demo_**](#demo)
-            -   [**_Phòng chống_**](#phòng-chống-1)
-    -   [Clickjacking](#clickjacking)
-        -   [**_Khái niệm Clickjacking_**](#khái-niệm-clickjacking)
-        -   [**_Phương pháp_**](#phương-pháp)
-        -   [**_Phòng chống Clickjacking_**](#phòng-chống-clickjacking)
-            -   [**Frame busting**](#frame-busting)
-            -   [**X-Frame-Options**](#x-frame-options)
-            -   [**Phòng chống Clickjacking với Content Security Policy**](#phòng-chống-clickjacking-với-content-security-policy)
+- [Mục lục](#mục-lục)
+  - [Giới thiệu](#giới-thiệu)
+  - [XSS attack](#xss-attack)
+    - [**_Giới thiệu XSS attack_**](#giới-thiệu-xss-attack)
+    - [**_Phân loại và phương thức_**](#phân-loại-và-phương-thức)
+      - [**Stored Cross-Site Scripting Attacks**](#stored-cross-site-scripting-attacks)
+      - [**Reflected Cross-Site Scripting Attacks**](#reflected-cross-site-scripting-attacks)
+      - [**DOM-Based Cross-Site Scripting Attacks**](#dom-based-cross-site-scripting-attacks)
+    - [**_Phòng chống_**](#phòng-chống)
+      - [**Escape dynamic content**](#escape-dynamic-content)
+      - [**Content Security Policy**](#content-security-policy)
+    - [**_So sánh_**](#so-sánh)
+  - [**CRSF Attack**](#crsf-attack)
+    - [**Khái niệm CRSF Attack**](#khái-niệm-crsf-attack)
+    - [**Mục đích CRSF Attack**](#mục-đích-crsf-attack)
+    - [**Phương thức và phòng chống CRSF Attack**](#phương-thức-và-phòng-chống-crsf-attack)
+      - [**_Phương thức_**](#phương-thức)
+      - [**_Cách phòng chống_**](#cách-phòng-chống)
+    - [**CRSF hiện nay**](#crsf-hiện-nay)
+  - [SQL Injection](#sql-injection)
+    - [**Khái niệm**](#khái-niệm)
+      - [**_Injection Attack_**](#injection-attack)
+      - [**_SQL Injection_**](#sql-injection-1)
+      - [**_Một số cuộc tấn công_**](#một-số-cuộc-tấn-công)
+    - [**Mục đích**](#mục-đích)
+    - [**Phương thức và phòng chống SQL Injection**](#phương-thức-và-phòng-chống-sql-injection)
+      - [**_Phương thức_**](#phương-thức-1)
+      - [**_Demo_**](#demo)
+      - [**_Phòng chống_**](#phòng-chống-1)
+  - [Clickjacking](#clickjacking)
+    - [**_Khái niệm Clickjacking_**](#khái-niệm-clickjacking)
+    - [**_Phương pháp_**](#phương-pháp)
+    - [**_Phòng chống Clickjacking_**](#phòng-chống-clickjacking)
+      - [**Frame busting**](#frame-busting)
+      - [**X-Frame-Options**](#x-frame-options)
+      - [**Phòng chống Clickjacking với Content Security Policy**](#phòng-chống-clickjacking-với-content-security-policy)
 
 ## Giới thiệu
 
@@ -97,10 +97,10 @@ element.insertAdjacentHTML;
 element.onevent;
 ```
 
-Nhưng tuỳ vào sink và cách website sử dụng chúng, kẻ tấn công phải suy nghĩ cách để inject được mã độc vào browser. Ví dụ như khi website sử dụng document.write() mà data mà kẻ tấn công đang nhắm tới được để trong cặp dấu ngoặc kép, thì kẻ tấn công phải thêm “> trước khi họ ghi `<script>` để đóng cặp ngoặc và element đó. Hoặc đối với innerHTML, thì tag `<script>` sẽ không được chạy, cho nên kẻ tấn công sẽ phải dùng các tag khác như img hay iframe để thực hiện XSS attack. Ví dụ:\
-`element.innerHTML='... <img src=1 onerror=alert(“hehe”)> ...'`
+Nhưng tuỳ vào sink và cách website sử dụng chúng, kẻ tấn công phải suy nghĩ cách để inject được mã độc vào browser. Ví dụ như khi website sử dụng document.write() mà data mà kẻ tấn công đang nhắm tới được để trong cặp dấu ngoặc kép, thì kẻ tấn công phải thêm "> trước khi họ ghi `<script>` để đóng cặp ngoặc và element đó. Hoặc đối với innerHTML, thì tag `<script>` sẽ không được chạy, cho nên kẻ tấn công sẽ phải dùng các tag khác như img hay iframe để thực hiện XSS attack. Ví dụ:\
+`element.innerHTML='... <img src=1 onerror=alert("hehe")> ...'`
 
-Một trong những cách lợi dụng phổ biến là nhắm vào URI Fragment của URL làm source. URI fragment chính là phần phía sau dấu “#” của URL, để scroll tới element có id đó khi web page được load. Các Single-page app (SPA), vì muốn tránh việc browser bị nháy trắng mỗi khi refresh page, nên họ để cả app vào trong 1 static URL và dùng URI Fragment để nhớ trạng thái lúc trước (vị trí) và load lại trạng thái đó mà không bị nháy. Kỹ thuật này cũng được sử dụng vào các ứng dụng web có infinite-scrolling.
+Một trong những cách lợi dụng phổ biến là nhắm vào URI Fragment của URL làm source. URI fragment chính là phần phía sau dấu "#" của URL, để scroll tới element có id đó khi web page được load. Các Single-page app (SPA), vì muốn tránh việc browser bị nháy trắng mỗi khi refresh page, nên họ để cả app vào trong 1 static URL và dùng URI Fragment để nhớ trạng thái lúc trước (vị trí) và load lại trạng thái đó mà không bị nháy. Kỹ thuật này cũng được sử dụng vào các ứng dụng web có infinite-scrolling.
 
 Bình thường thì URI fragment sẽ không được gửi cho server, cho nên ta không thể bảo vệ DOM-based XSS bằng cách tăng cường bảo mật trên code của phía server, ngoài ra thì các developer cũng sẽ không thể nhìn server log để dò tìm thấy dấu vết cuộc tấn công nào, cho nên ta luôn cần phải xem xét kỹ lưỡng code bên phía client.
 
@@ -121,10 +121,10 @@ Theo lẽ thường thì fragment thường sẽ không được ghi ra thẳng 
 ```
 
 Như vậy:
-`https://mywebsite.com/search?product=<script>alert(“hehe”);</script>`
+`https://mywebsite.com/search?product=<script>alert("hehe");</script>`
 
 Hoặc:
-`https://mywebsite.com/search#product=<script>alert(“hehe”);</script>`
+`https://mywebsite.com/search#product=<script>alert("hehe");</script>`
 
 Đều có thể làm hiện alert, nhưng hacker nếu được thì họ sẽ dùng cái bên dưới vì URI Fragment sẽ không được gửi lên cho server và được ghi vào log, làm cho các developer của website rất khó nhận ra lỗ hổng.
 
@@ -137,7 +137,7 @@ Bảng các entity encoding ứng với các kí tự điều khiển của HTML
 ![Bảng entity encoding](images/EntityEncoding.png "Bảng entity encoding")
 
 Ví dụ với reflected XSS:\
-`https://mywebsite.com/search?product=<script>alert(“hehe”);</script>`
+`https://mywebsite.com/search?product=<script>alert("hehe");</script>`
 
 Thì nó sẽ ra:\
 `<p>Kết quả tìm kiếm cho &lt;script&gt;alert(&quot;hehe&quot;)&lt;/script&gt;</p>`
@@ -148,9 +148,9 @@ Vì XSS đã trở nên khá phổ biến nên các framework hiện đại đ�
 
 #### **Content Security Policy**
 
-Một cách khác để chống việc browser thực hiện những javascript được inject vào qua các loại XSS kể trên, đó là “nói” với browser của user rằng không nên thực hiện những dòng javascript ở các nguồn nào, cách để ta “nói” cho browser biết đó chính là sử dụng Content Security Policy (CSP)
+Một cách khác để chống việc browser thực hiện những javascript được inject vào qua các loại XSS kể trên, đó là "nói" với browser của user rằng không nên thực hiện những dòng javascript ở các nguồn nào, cách để ta "nói" cho browser biết đó chính là sử dụng Content Security Policy (CSP)
 
-Đối với XSS, thì kẻ tấn công chỉ có thể inject inline javascript, là những đoạn javascript mà được ghi thẳng giữa tag `<script>`, và tag `<script>` nhưng có thuộc tính src để dẫn đến file javascript ở chỗ khác. Hai điều này có thể tránh được bằng cách “nói” với browser là đừng chạy inline javascript và file javascript có nguồn ở bên ngoài. Ta có thể “nói” được điều đó với policy như sau:\
+Đối với XSS, thì kẻ tấn công chỉ có thể inject inline javascript, là những đoạn javascript mà được ghi thẳng giữa tag `<script>`, và tag `<script>` nhưng có thuộc tính src để dẫn đến file javascript ở chỗ khác. Hai điều này có thể tránh được bằng cách "nói" với browser là đừng chạy inline javascript và file javascript có nguồn ở bên ngoài. Ta có thể "nói" được điều đó với policy như sau:\
 `Content-Security-Policy: script-src 'self'`
 
 CSP có thể được đặt ở HTTP headers, hoặc ta có thể trong tag meta của file HTML như sau:\
@@ -180,10 +180,10 @@ CSRF ( Cross Site Request Forgery) là kỹ thuật tấn công bằng cách s�
 
 Lợi dụng lỗ hổng thông qua CSRF, các hacker có thể lợi dụng để:
 
--   Đánh cắp đi những dữ liệu bí mật.
--   Thực hiện phát tán worm lên mạng xã hội.
--   Cài đặt những phần mềm độc hại lên điện thoại di động.
--   Thực hiện khảo sát trực tuyến.
+- Đánh cắp đi những dữ liệu bí mật.
+- Thực hiện phát tán worm lên mạng xã hội.
+- Cài đặt những phần mềm độc hại lên điện thoại di động.
+- Thực hiện khảo sát trực tuyến.
 
 ![twitter](images/worm_csrf.PNG "twitter worm csrf attack")
 
@@ -195,40 +195,37 @@ Các ứng dụng web hoạt động theo cơ chế nhận các câu lệnh HTTP
 
 Ví dụ để hiểu rõ hơn, khi ứng dụng web có một chức năng đơn giản đó là thay đổi mật khẩu người dùng. Việc gửi lên server theo phương thức HTTP GET thông thường. Nội dung gửi lên là password mới và confirm lại password vừa nhập:
 
-1. Người dùng đã đăng nhập trên web của bạn, cookie sẽ được tạo và lưu trữ dưới trình duyệt, khi bạn vào site lần sau bạn không cần phải đăng nhập lại. Giả sử bạn chưa đăng thoát, lúc này cookies của bạn vẫn còn hạn trong phiên làm việc.
-
+1. Người dùng đã đăng nhập trên web của bạn, cookie sẽ được tạo và lưu trữ dưới trình duyệt, khi bạn vào site lần sau bạn không cần phải đăng nhập lại. Giả sử bạn chưa đăng thoát, lúc này cookies của bạn vẫn còn hạn trong phiên làm việc.\
 ![user_session](images/user_session_crsf.png)
 
 2. Lúc này nếu website của bạn mắc lỗi CSRF, người dùng vô tình vào một trang hacker giả mạo với mục đích lấy tài khoản từ ứng dụng web của bạn. Trong trang giả mạo hacker sẽ chạy một url để cố ý reset mật khẩu người dùng trên trang của bạn:
-   https://website_cua_ban.com/accounts/?passwordnew=hacked&passwordconf=hacked&Change=Change#
-
+   <https://website_cua_ban.com/accounts/?passwordnew=hacked&passwordconf=hacked&Change=Change>#\
 ![attacker](images/hacker_crsf.png)
 
-3. Khi đó, ứng dụng web website_cua_ban.com sẽ nhận request và có chứng thực là người dùng hiện tại và thực hiện reset mật khẩu. Và nếu biết được username, hacker có thể dễ dàng lấy được quyền truy cập tài khoản của bạn.
-
+3. Khi đó, ứng dụng web website_cua_ban.com sẽ nhận request và có chứng thực là người dùng hiện tại và thực hiện reset mật khẩu. Và nếu biết được username, hacker có thể dễ dàng lấy được quyền truy cập tài khoản của bạn.\
 ![crsf_attack](images/crsf_attack.PNG)
 
 #### **_Cách phòng chống_**
 
 Đối với từng đối tượng, chúng ta sẽ có các cách phòng chống khác nhau:
 
-**1. User**
+##### **1. User**
 
--   Nên đăng xuất khỏi các website quan trọng: Tài khoản ngân hàng, thanh toán trực tuyến, các mạng xã hội, gmail… khi đã thực hiện xong giao dịch.
--   Nên login vào một máy riêng và không cho người thứ 2 tiếp xúc với máy đó.
--   Không nên click vào các đường dẫn mà bạn nhận được qua email, qua facebook … Khi bạn đưa chuột qua 1 đường dẫn, phía dưới bên trái của trình duyệt thường có địa chỉ website đích, bạn nên lưu ý để đến đúng trang mình muốn.
--   Không lưu các thông tin về mật khẩu tại trình duyệt của mình. Không nên chọn các phương thức “đăng nhập lần sau”, “lưu mật khẩu” …
--   Trong quá trình thực hiện giao dịch hay vào các website quan trọng không nên vào các website khác, có thể chứa các mã khai thác của kẻ tấn công.
+- Nên đăng xuất khỏi các website quan trọng: Tài khoản ngân hàng, thanh toán trực tuyến, các mạng xã hội, gmail… khi đã thực hiện xong giao dịch.
+- Nên login vào một máy riêng và không cho người thứ 2 tiếp xúc với máy đó.
+- Không nên click vào các đường dẫn mà bạn nhận được qua email, qua facebook … Khi bạn đưa chuột qua 1 đường dẫn, phía dưới bên trái của trình duyệt thường có địa chỉ website đích, bạn nên lưu ý để đến đúng trang mình muốn.
+- Không lưu các thông tin về mật khẩu tại trình duyệt của mình. Không nên chọn các phương thức "đăng nhập lần sau", "lưu mật khẩu" …
+- Trong quá trình thực hiện giao dịch hay vào các website quan trọng không nên vào các website khác, có thể chứa các mã khai thác của kẻ tấn công.
 
-**2. Server**
+##### **2. Server**
 
--   **Sử dụng captcha, các thông báo xác nhận:** Captcha được sử dụng để nhận biết đối tượng đang thao tác với hệ thống là con người hay không. Các thao tác quan trọng như “đăng nhập” hay là “chuyển khoản” ,”thanh toán” thường là hay sử dụng captcha. Những chức năng quan trọng như reset mật khẩu, xác nhận thay đổi info của account cũng nên gửi url qua email đã đăng ký để người dùng có thể click vào xác nhận.
+- **Sử dụng captcha, các thông báo xác nhận:** Captcha được sử dụng để nhận biết đối tượng đang thao tác với hệ thống là con người hay không. Các thao tác quan trọng như "đăng nhập" hay là "chuyển khoản" ,"thanh toán" thường là hay sử dụng captcha. Những chức năng quan trọng như reset mật khẩu, xác nhận thay đổi info của account cũng nên gửi url qua email đã đăng ký để người dùng có thể click vào xác nhận.
 
 ![capcha](images/capcha.png)
 
--   **Sử dụng Token:** Các ứng dụng web nên nhúng một secret token. Các requests được thực hiện từ trang web này nên mang theo token đó, nếu không có sẽ được xem là cross-site request và sẽ không được thực thi đúng như mong muốn. Token này được tạo ra là duy nhất và khác nhau với mỗi phiên làm việc. Hàm tạo ra thường nhận đối số là SESSION hoặc TIME_STAMP. Phía Server khi nhận sẽ đối chiếu Token và quyết định có thực hiện hay không. (Ví dụ, JSW Token)
+- **Sử dụng Token:** Các ứng dụng web nên nhúng một secret token. Các requests được thực hiện từ trang web này nên mang theo token đó, nếu không có sẽ được xem là cross-site request và sẽ không được thực thi đúng như mong muốn. Token này được tạo ra là duy nhất và khác nhau với mỗi phiên làm việc. Hàm tạo ra thường nhận đối số là SESSION hoặc TIME_STAMP. Phía Server khi nhận sẽ đối chiếu Token và quyết định có thực hiện hay không. (Ví dụ, JSW Token)
 
--   **Sử dụng Samesite Cookie:** Có 1 thuộc tính cookie mới, Chrome đã bắt đầu hỗ trợ vào ngày 29 tháng 3 và theo sau là các trình duyệt phổ biến khác. Đó được gọi là thuộc tính Cookie Same-Site. Các đội developer có thể chỉ dẫn cho trình duyệt kiểm soát xem cookie có được gửi cùng với request của trang web bên thứ 3 tạo ra hay không, bằng cách sử dụng thuộc tính cookie Same-Site. Đây là một giải pháp thiết thực hơn so với việc từ chối gửi cookie.
+- **Sử dụng Samesite Cookie:** Có 1 thuộc tính cookie mới, Chrome đã bắt đầu hỗ trợ vào ngày 29 tháng 3 và theo sau là các trình duyệt phổ biến khác. Đó được gọi là thuộc tính Cookie Same-Site. Các đội developer có thể chỉ dẫn cho trình duyệt kiểm soát xem cookie có được gửi cùng với request của trang web bên thứ 3 tạo ra hay không, bằng cách sử dụng thuộc tính cookie Same-Site. Đây là một giải pháp thiết thực hơn so với việc từ chối gửi cookie.
 
 Đặt thuộc tính Same-Site khá đơn giản, nó chỉ cần thêm giá trị SameSite vào cookie, ví dụ:
 
@@ -244,10 +241,10 @@ Ví dụ để hiểu rõ hơn, khi ứng dụng web có một chức năng đơ
 
 ### **CRSF hiện nay**
 
--   Có vẻ như thuộc tính cookie SameSite là một biện pháp bảo mật hiệu quả chống lại các cuộc tấn công CSRF.
--   Sự phổ biến của CSRF đang đi xuống, chứng minh cho điều này thì CSRF đang ở vị trí thứ 5 danh sách Top 10 của OWASP được công bố vào năm 2010, nhưng nó lại xuống vị trí thứ 8 vào năm 2013. Và bây giờ chúng ta k thấy nó xuất hiện trong danh sách Top 10 của OWASP nữa.
--   Trình duyệt phổ biến nhất hiện nay là Google Chrome cũng đã có cập nhật về SameSite, cùng với Firefox ở phiên bản FireFox69 và các browser khác.
--   Vì vậy, ngày nay, tấn công CSRF đã gần như biến mất.
+- Có vẻ như thuộc tính cookie SameSite là một biện pháp bảo mật hiệu quả chống lại các cuộc tấn công CSRF.
+- Sự phổ biến của CSRF đang đi xuống, chứng minh cho điều này thì CSRF đang ở vị trí thứ 5 danh sách Top 10 của OWASP được công bố vào năm 2010, nhưng nó lại xuống vị trí thứ 8 vào năm 2013. Và bây giờ chúng ta k thấy nó xuất hiện trong danh sách Top 10 của OWASP nữa.
+- Trình duyệt phổ biến nhất hiện nay là Google Chrome cũng đã có cập nhật về SameSite, cùng với Firefox ở phiên bản FireFox69 và các browser khác.
+- Vì vậy, ngày nay, tấn công CSRF đã gần như biến mất.
 
 ## SQL Injection
 
@@ -266,25 +263,25 @@ Hacker có thể dùng các lệnh SQL để đánh cắp hoặc phá hoại d�
 
 #### **_Một số cuộc tấn công_**
 
--   Nhiều cơ quan, trường học của Mỹ bị tấn công bởi lỗ hổng SQL Injection: <https://vtv.vn/cong-nghe/diem-mat-nhung-vu-tan-cong-mang-am-i-nhat-gan-day-20180923215527881.htm>
+- Nhiều cơ quan, trường học của Mỹ bị tấn công bởi lỗ hổng SQL Injection: <https://vtv.vn/cong-nghe/diem-mat-nhung-vu-tan-cong-mang-am-i-nhat-gan-day-20180923215527881.htm>
     ![SQL Injection attack](images/SQL_Injection_attack_2.png "SQL Injection attack 1")
--   BKAV cũng bị tấn công bởi lỗ hổng SQL Injection: <https://vnexpress.net/hacker-da-tan-cong-bkav-tu-mot-loi-co-ban-4341131.html>
+- BKAV cũng bị tấn công bởi lỗ hổng SQL Injection: <https://vnexpress.net/hacker-da-tan-cong-bkav-tu-mot-loi-co-ban-4341131.html>
     ![SQL Injection attack](images/SQL_Injection_attack_1.png "SQL Injection attack 2")
 
 ### **Mục đích**
 
--   Hack tài khoản cá nhân.
--   Ăn cắp hoặc sao chép dữ liệu của trang web hoặc hệ thống.
--   Thay đổi dữ liệu nhạy cảm của hệ thống.
--   Xóa dữ liệu nhạy cảm và quan trọng của hệ thống.
--   Người dùng có thể đăng nhập vào ứng dụng với tư cách người dùng khác, ngay cả với tư cách quản trị viên.
--   Người dùng có thể xem thông tin cá nhân thuộc về những người dùng khác, ví dụ chi tiết hồ sơ của người dùng khác, chi tiết giao dịch của họ,…
--   Người dùng có thể sửa đổi cấu trúc của cơ sở dữ liệu, thậm chí xóa các bảng trong cơ sở dữ liệu ứng dụng.
--   Người dùng có thể kiểm soát máy chủ cơ sở dữ liệu và thực thi lệnh theo ý muốn.
+- Hack tài khoản cá nhân.
+- Ăn cắp hoặc sao chép dữ liệu của trang web hoặc hệ thống.
+- Thay đổi dữ liệu nhạy cảm của hệ thống.
+- Xóa dữ liệu nhạy cảm và quan trọng của hệ thống.
+- Người dùng có thể đăng nhập vào ứng dụng với tư cách người dùng khác, ngay cả với tư cách quản trị viên.
+- Người dùng có thể xem thông tin cá nhân thuộc về những người dùng khác, ví dụ chi tiết hồ sơ của người dùng khác, chi tiết giao dịch của họ,…
+- Người dùng có thể sửa đổi cấu trúc của cơ sở dữ liệu, thậm chí xóa các bảng trong cơ sở dữ liệu ứng dụng.
+- Người dùng có thể kiểm soát máy chủ cơ sở dữ liệu và thực thi lệnh theo ý muốn.
 
 ### **Phương thức và phòng chống SQL Injection**
 
-#### **_Phương thức_**
+#### **_Phương thức SQL Injection_**
 
 Hacker có thể kiểm tra lỗ hổng này rất dễ dàng. Chỉ cần nhập ký hiệu ' hoặc " vào các trường được kiểm tra (ví dụ như form đăng nhập, đăng kí, URL của website,...). Nếu nó trả về bất kỳ thông báo bất ngờ hoặc bất thường, thì hacker có thể nhan dinh rằng SQL Injection khả thi cho trường đó.
 
@@ -292,20 +289,20 @@ Hacker có thể kiểm tra lỗ hổng này rất dễ dàng. Chỉ cần nhậ
 
 Được thực hiện trang trang: <https://www.hacksplaining.com/exercises/sql-injection>
 
--   Thử nhập `email = user@email.com` và `password = password`, server trả về lỗi “Unknown email or password.” như bình thường.
+- Thử nhập `email = user@email.com` và `password = password`, server trả về lỗi "Unknown email or password." như bình thường.
     ![SQL Injection step](images/SQL_Injection_step_1.png "SQL Injection step 1")
--   Tuy nhiên, thử nhập email như cũ nhưng `password = password’`, server lại trả về một lỗi bất thường?
+- Tuy nhiên, thử nhập email như cũ nhưng `password = password’`, server lại trả về một lỗi bất thường?
     ![SQL Injection step](images/SQL_Injection_step_2.png "SQL Injection step 2")
--   Để ý log của server, ta thấy đó là một lỗi về cú pháp của truy vấn SQL, và code truy vấn SQL có khả năng bị Hacker khai thác.
+- Để ý log của server, ta thấy đó là một lỗi về cú pháp của truy vấn SQL, và code truy vấn SQL có khả năng bị Hacker khai thác.
     ![SQL Injection step](images/SQL_Injection_step_3.png "SQL Injection step 3")
--   Thử đổi password thành `' or 1=1--`, ta thấy code SQL query ở phần pass đã trở thành một mệnh đề luôn đúng `'' or 1=1` và các đoạn code sau nó đều bị comment lại.
+- Thử đổi password thành `' or 1=1--`, ta thấy code SQL query ở phần pass đã trở thành một mệnh đề luôn đúng `'' or 1=1` và các đoạn code sau nó đều bị comment lại.
     ![SQL Injection step](images/SQL_Injection_step_4.png "SQL Injection step 4")
--   Hacker đã đăng nhập được vào tài khoản của user mà không cần phải biết password chính xác!
+- Hacker đã đăng nhập được vào tài khoản của user mà không cần phải biết password chính xác!
     ![SQL Injection step](images/SQL_Injection_step_5.png "SQL Injection step 5")
 
-#### **_Phòng chống_**
+#### **_Phòng chống SQL Injection_**
 
--   Sử dụng Parameterized Statements: không truyền trực tiếp input vào SQL để query mà để ngôn ngữ lập trình xử lý input đó trước.
+- Sử dụng Parameterized Statements: không truyền trực tiếp input vào SQL để query mà để ngôn ngữ lập trình xử lý input đó trước.
 
     Ví dụ:
 
@@ -318,11 +315,11 @@ Hacker có thể kiểm tra lỗ hổng này rất dễ dàng. Chỉ cần nhậ
     db.query(sql, [name]).then(...);
     ```
 
--   Object Relational Mapping: ORM (Object Relational Mapping), là một kỹ thuật/cơ chế lập trình thực hiện ánh xạ CSDL sang các đối tượng trong các ngôn ngữ lập trình hướng đối tượng như Java, C# …(các table tương ứng các class, mối ràng buộc giữa các table tương ứng quan hệ giữa các class ‘has a’ , ‘is a’).
+- Object Relational Mapping: ORM (Object Relational Mapping), là một kỹ thuật/cơ chế lập trình thực hiện ánh xạ CSDL sang các đối tượng trong các ngôn ngữ lập trình hướng đối tượng như Java, C# …(các table tương ứng các class, mối ràng buộc giữa các table tương ứng quan hệ giữa các class ‘has a’ , ‘is a’).
     Ví dụ: Sequelize của JS, Hibernate của Java, Dapper của C#, …
--   Sanitizing Inputs: Làm sạch các input: xóa các khoản trắng thừa, kiểm tra đúng định dạng, vị trí các dấu ngoặc,…
--   Third Party Authentication: Xác thực từ bên thứ 3
--   Password Hashing: các thông tin nhạy cảm được hash 1 chiều trước khi lưu vào database
+- Sanitizing Inputs: Làm sạch các input: xóa các khoản trắng thừa, kiểm tra đúng định dạng, vị trí các dấu ngoặc,…
+- Third Party Authentication: Xác thực từ bên thứ 3
+- Password Hashing: các thông tin nhạy cảm được hash 1 chiều trước khi lưu vào database
 
 ## Clickjacking
 
@@ -404,3 +401,11 @@ Như đã có nhắc tới ở phần XSS attack, Content Security Policy (CSP) 
 `'none'` có nghĩa là không thể có frame nào chứa được website của mình, dù có là từ đâu, ở đâu. Ngoài ra ta có thể dùng `'self'`, hay một website cụ thể để chỉ có thể để trong `<iframe>` của chính website đó, hay một website mà mình tin tưởng. Nhưng điều lý tưởng là đừng nên cho ai để website của mình vào 1 frame.
 
 Xem thêm ở <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors>
+
+Về việc sử dụng X-Frame-Options hay CSP, ta phải xem xét trình duyệt:
+
+- Chrome bỏ qua X-Frame-Options.
+- Safari 9 và dưới bỏ qua CSP frame-ancestors.
+- Safari 10-12 có sử dụng CSP frame-ancestors, nhưng sẽ ưu tiên X-Frame-Options nếu cả 2 cùng có sử dụng.
+
+Lý tưởng là ta hãy xài cả hai để đảm bảo cover hết mọi trình duyệt.
