@@ -144,6 +144,19 @@ Cách đơn giản nhất để tránh browser thực hiện những đoạn jav
 Bảng các entity encoding ứng với các kí tự điều khiển của HTML:
 ![Bảng entity encoding](images/EntityEncoding.png "Bảng entity encoding")
 
+Cách escape dynamic content tuỳ thuộc vào công nghệ mà server sử dụng:\
+
+- Python (Django): `**{{ contents }}**`
+- Ruby (Rails): `<%= contents %>`
+- Java (Java server pages): `<c:out value=”${contents}”>`
+- C# (ASP.NET): `<%= HttpUtility.HtmlEncode(contents) %>`
+- Node:
+  - Mustache: `{{ contents }}`
+  - Dust: `{ contents }`
+  - Nunjucks: `{{ contents }}`
+- AngularJS: `<div>{{dynamicContent}}</div>`
+- React: `<div>{dynamicContent}</div>`
+
 Ví dụ với reflected XSS:\
 `https://mywebsite.com/search?product=<script>alert("hehe");</script>`
 
