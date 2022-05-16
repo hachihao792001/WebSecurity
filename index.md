@@ -142,10 +142,10 @@ Hoặc:
 #### **Escape dynamic content**
 
 Cách đơn giản nhất để tránh browser thực hiện những đoạn javascript không mong muốn, chính là không xem những nội dung lấy từ database, HTTP request, fragment hay nhiều nguồn khác (dynamic content) là những đoạn HTML. Cách để làm được điều này đó chính là ta sẽ escape những kí tự điều khiển của HTML thành những entity encoding để cho chúng không có ý nghĩa gì đối với HTML mà chỉ là nội dung bình thường. Cách này có thể dùng đổi phòng chống cả 3 loại XSS.
-Bảng các entity encoding ứng với các kí tự điều khiển của HTML:
+Bảng các entity encoding ứng với các kí tự điều khiển của HTML:\
 ![Bảng entity encoding](images/EntityEncoding.png "Bảng entity encoding")
 
-Cách escape dynamic content tuỳ thuộc vào công nghệ mà server sử dụng:\
+Cách escape dynamic content tuỳ thuộc vào công nghệ mà server sử dụng:
 
 - Python (Django): `**{{ contents }}**`
 - Ruby (Rails): `<%= contents %>`
