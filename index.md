@@ -20,6 +20,7 @@
       - [**Escape dynamic content**](#escape-dynamic-content)
       - [**Content Security Policy**](#content-security-policy)
     - [**_So sánh_**](#so-sánh)
+    - [**_DEMO_**](#demo)
   - [**CRSF Attack**](#crsf-attack)
     - [**Khái niệm CRSF Attack**](#khái-niệm-crsf-attack)
     - [**Mục đích CRSF Attack**](#mục-đích-crsf-attack)
@@ -191,7 +192,7 @@ Content security policy có thể dùng để chống cả 3 loại XSS, ngoài 
 | Inject javascript vào csdl -> có giao tiếp với server -> xuất hiện trong server log     | Inject javascript vào HTTP request -> có giao tiếp với server -> xuất hiện trong server log | Không giao tiếp với server -> Không xuất hiện trong server log -> khó phát hiện hơn |
 | Lưu vào database -> Mọi user truy cập đều trở thành nạn nhân -> Khả năng dẫn truyền cao | Phải lừa được người khác bấm vào URL được xây dựng -> khả năng dẫn truyền thấp              | Phải lừa được người khác bấm vào URL được xây dựng -> khả năng dẫn truyền thấp      |
 
-### **DEMO**
+### **_DEMO_**
 
 Em đã tạo sẵn 1 ứng dụng web đơn giản và README hướng dẫn được viết bằng tiếng anh ở [đây](https://github.com/hachihao792001/DemoStoredXSS), để tiện demo về Stored XSS, cũng như là cách phòng chống nó.
 
