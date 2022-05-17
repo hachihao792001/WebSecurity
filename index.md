@@ -435,3 +435,8 @@ Về việc sử dụng X-Frame-Options hay CSP, ta phải xem xét trình duy�
 - Safari 10-12 có sử dụng CSP frame-ancestors, nhưng sẽ ưu tiên X-Frame-Options nếu cả 2 cùng có sử dụng.
 
 Lý tưởng là ta hãy xài cả hai để đảm bảo cover hết mọi trình duyệt.
+
+## Reference
+
+Web Security for Developers: Real Threats, Practical Defense
+<https://seedsecuritylabs.org/Labs_20.04/Web/Web_XSS_Elgg/>
