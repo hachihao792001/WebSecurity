@@ -45,6 +45,7 @@
       - [**Frame busting**](#frame-busting)
       - [**X-Frame-Options**](#x-frame-options)
       - [**Phòng chống Clickjacking với Content Security Policy**](#phòng-chống-clickjacking-với-content-security-policy)
+  - [References](#references)
 
 ## Giới thiệu
 
@@ -436,7 +437,7 @@ Về việc sử dụng X-Frame-Options hay CSP, ta phải xem xét trình duy�
 
 Lý tưởng là ta hãy xài cả hai để đảm bảo cover hết mọi trình duyệt.
 
-## Reference
+## References
 
 Web Security for Developers: Real Threats, Practical Defense
 <https://seedsecuritylabs.org/Labs_20.04/Web/Web_XSS_Elgg/>
