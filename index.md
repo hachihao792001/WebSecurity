@@ -148,14 +148,14 @@ Bảng các entity encoding ứng với các kí tự điều khiển của HTML
 
 Cách escape dynamic content tuỳ thuộc vào công nghệ mà server sử dụng:
 
-- Python (Django): `**{{ contents }}**`
+- Python (Django): `**{{ "{{ contents " }}}}**`
 - Ruby (Rails): `<%= contents %>`
-- Java (Java server pages): `<c:out value=”${contents}”>`
+- Java (Java server pages): `<c:out value="${contents}">`
 - C# (ASP.NET): `<%= HttpUtility.HtmlEncode(contents) %>`
 - Node:
-  - Mustache: `{{ contents }}`
+  - Mustache: `{{ "{{ contents " }}}}`
   - Dust: `{ contents }`
-  - Nunjucks: `{{ contents }}`
+  - Nunjucks: `{{ "{{ contents " }}}}`
 - AngularJS: `<div>{{dynamicContent}}</div>`
 - React: `<div>{dynamicContent}</div>`
 
@@ -439,5 +439,5 @@ Lý tưởng là ta hãy xài cả hai để đảm bảo cover hết mọi trì
 
 ## References
 
-Web Security for Developers: Real Threats, Practical Defense
-<https://seedsecuritylabs.org/Labs_20.04/Web/Web_XSS_Elgg/>
+Web Security for Developers: Real Threats, Practical Defense\
+<https://seedsecuritylabs.org/Labs_20.04/Web/>
