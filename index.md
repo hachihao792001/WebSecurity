@@ -440,4 +440,9 @@ Lý tưởng là ta hãy xài cả hai để đảm bảo cover hết mọi trì
 ## References
 
 Web Security for Developers: Real Threats, Practical Defense\
-<https://seedsecuritylabs.org/Labs_20.04/Web/>
+<https://seedsecuritylabs.org/Labs_20.04/Web/>\
+<https://portswigger.net/web-security/cross-site-scripting>\
+<https://viblo.asia/p/dom-based-xss-GrLZDkXgKk0>\
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>\
+<https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options>\
+<https://www.hacksplaining.com/prevention/xss-stored>
