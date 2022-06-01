@@ -21,13 +21,13 @@
       - [**Content Security Policy**](#content-security-policy)
     - [**_So sánh_**](#so-sánh)
     - [**_DEMO_**](#demo)
-  - [**CRSF Attack**](#crsf-attack)
-    - [**Khái niệm CRSF Attack**](#khái-niệm-crsf-attack)
-    - [**Mục đích CRSF Attack**](#mục-đích-crsf-attack)
-    - [**Phương thức và phòng chống CRSF Attack**](#phương-thức-và-phòng-chống-crsf-attack)
+  - [**CSRF Attack**](#csrf-attack)
+    - [**Khái niệm CSRF Attack**](#khái-niệm-csrf-attack)
+    - [**Mục đích CSRF Attack**](#mục-đích-csrf-attack)
+    - [**Phương thức và phòng chống CSRF Attack**](#phương-thức-và-phòng-chống-csrf-attack)
       - [**_Phương thức_**](#phương-thức)
       - [**_Cách phòng chống_**](#cách-phòng-chống)
-    - [**CRSF hiện nay**](#crsf-hiện-nay)
+    - [**CSRF hiện nay**](#csrf-hiện-nay)
   - [SQL Injection](#sql-injection)
     - [**Khái niệm**](#khái-niệm)
       - [**_Injection Attack_**](#injection-attack)
@@ -197,13 +197,13 @@ Content security policy có thể dùng để chống cả 3 loại XSS, ngoài 
 
 Em đã tạo sẵn 1 ứng dụng web đơn giản và README hướng dẫn được viết bằng tiếng anh ở [đây](https://github.com/hachihao792001/DemoStoredXSS), để tiện demo về Stored XSS, cũng như là cách phòng chống nó.
 
-## **CRSF Attack**
+## **CSRF Attack**
 
-### **Khái niệm CRSF Attack**
+### **Khái niệm CSRF Attack**
 
 CSRF ( Cross Site Request Forgery) là kỹ thuật tấn công bằng cách sử dụng quyền chứng thực của người dùng đối với một website. CSRF là kỹ thuật tấn công vào người dùng, dựa vào đó hacker có thể thực thi những thao tác phải yêu cầu sự chứng thực. Nói cho dễ hiểu, khi bạn truy cập 1 trang web của Attacker, Attacker tự động tạo 1 request đến trang target mà tất cả các cookie được lưu trong trình duyệt của người dùng với trang target sẽ được tự động thêm vào. Nói cách khác, 1 phiên làm việc thuộc 1 trang lại có thể được sử dụng bởi trang khác. Đây chính là mấu chốt của việc tấn công CSRF.
 
-### **Mục đích CRSF Attack**
+### **Mục đích CSRF Attack**
 
 Lợi dụng lỗ hổng thông qua CSRF, các hacker có thể lợi dụng để:
 
@@ -214,7 +214,7 @@ Lợi dụng lỗ hổng thông qua CSRF, các hacker có thể lợi dụng đ�
 
 ![twitter](images/worm_csrf.PNG "twitter worm csrf attack")
 
-### **Phương thức và phòng chống CRSF Attack**
+### **Phương thức và phòng chống CSRF Attack**
 
 #### **_Phương thức_**
 
@@ -223,14 +223,14 @@ Các ứng dụng web hoạt động theo cơ chế nhận các câu lệnh HTTP
 Ví dụ để hiểu rõ hơn, khi ứng dụng web có một chức năng đơn giản đó là thay đổi mật khẩu người dùng. Việc gửi lên server theo phương thức HTTP GET thông thường. Nội dung gửi lên là password mới và confirm lại password vừa nhập:
 
 1. Người dùng đã đăng nhập trên web của bạn, cookie sẽ được tạo và lưu trữ dưới trình duyệt, khi bạn vào site lần sau bạn không cần phải đăng nhập lại. Giả sử bạn chưa đăng thoát, lúc này cookies của bạn vẫn còn hạn trong phiên làm việc.\
-![user_session](images/user_session_crsf.png)
+![user_session](images/user_session_csrf.png)
 
 2. Lúc này nếu website của bạn mắc lỗi CSRF, người dùng vô tình vào một trang hacker giả mạo với mục đích lấy tài khoản từ ứng dụng web của bạn. Trong trang giả mạo hacker sẽ chạy một url để cố ý reset mật khẩu người dùng trên trang của bạn:
    <https://website_cua_ban.com/accounts/?passwordnew=hacked&passwordconf=hacked&Change=Change>#\
-![attacker](images/hacker_crsf.png)
+![attacker](images/hacker_csrf.png)
 
 3. Khi đó, ứng dụng web website_cua_ban.com sẽ nhận request và có chứng thực là người dùng hiện tại và thực hiện reset mật khẩu. Và nếu biết được username, hacker có thể dễ dàng lấy được quyền truy cập tài khoản của bạn.\
-![crsf_attack](images/crsf_attack.PNG)
+![csrf_attack](images/csrf_attack.PNG)
 
 #### **_Cách phòng chống_**
 
@@ -266,7 +266,7 @@ Ví dụ để hiểu rõ hơn, khi ứng dụng web có một chức năng đơ
 | Như cái tên đã cho thấy rằng, đây là tùy chọn trong đó quy định Same-Site được áp dụng nghiêm ngặt. Khi thuộc tính SameSite được đặt là Strict, cookie sẽ không được gửi cùng với các request được bắt đầu bởi các trang web của bên thứ 3.                                                                                                                         | Để tăng sự tiện dụng nhưng vẫn duy trì tính an toàn nhất định, hãy đặt SameSite = Lax. Với cài đặt này, trình duyệt sẽ cho phép chia sẻ cookie giữa các trang web có cùng tên miền bắt chéo với nhau bắt nguồn từ yêu cầu GET cấp cao nhất. Do phương thức POST là kiểu HTTP "không an toàn" nên Cookie k được gửi khi SameSite=Lax | Việc sử dụng Cookie sẽ bình thường như trước đây khi có thể chia sẻ thông tin giữa bất cứ trang web nào với nhau. Với thiết lập này, rất thận trọng xem xét thông tin gì thì lưu ở Cookie và thông tin nào không.                   |
 | Đặt cookie là Strict có thể ảnh hưởng tiêu cực đến trải nghiệm duyệt web. Ví dụ: nếu bạn nhấp vào 1 liên kết dẫn đến trang profile của Facebook, và Facebook.com đặt cookie của nó là SameSite=Strict thì bạn không thể tiếp tục redirect trên Facebook trừ khi bạn đăng nhập lại vào Facebook. Lý do là vì Cookie của Facebook không được gửi kèm với request này. | Như vậy 2 trang web có thể chia sẻ dữ liệu cookie cho nhau miễn nó thuộc cùng một miền chéo, ví dụ hai web có cùng domain chính với nhau.                                                                                                                                                                                           | Người dùng sẽ có nhiều thuận lợi khi nhờ thông tin cá nhân được lưu trữ mà các trang web sẽ tối ưu để cá nhân hóa theo trải nghiệm của riêng họ. Đánh đổi lại là nguy cơ bảo mật bị các trang web lừa đảo ăn cắp thông tin cá nhân. |
 
-### **CRSF hiện nay**
+### **CSRF hiện nay**
 
 - Có vẻ như thuộc tính cookie SameSite là một biện pháp bảo mật hiệu quả chống lại các cuộc tấn công CSRF.
 - Sự phổ biến của CSRF đang đi xuống, chứng minh cho điều này thì CSRF đang ở vị trí thứ 5 danh sách Top 10 của OWASP được công bố vào năm 2010, nhưng nó lại xuống vị trí thứ 8 vào năm 2013. Và bây giờ chúng ta k thấy nó xuất hiện trong danh sách Top 10 của OWASP nữa.
@@ -441,8 +441,14 @@ Lý tưởng là ta hãy xài cả hai để đảm bảo cover hết mọi trì
 
 Web Security for Developers: Real Threats, Practical Defense\
 <https://seedsecuritylabs.org/Labs_20.04/Web/>\
+<https://seedsecuritylabs.org/Labs_20.04/Files/Web_CSRF_Elgg/Web_CSRF_Elgg.pdf>\
 <https://portswigger.net/web-security/cross-site-scripting>\
 <https://viblo.asia/p/dom-based-xss-GrLZDkXgKk0>\
+<https://www.hacksplaining.com/exercises/sql-injection>\
+<https://unit42.paloaltonetworks.com/network-attack-trends-february-april-2021>\
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP>\
 <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options>\
-<https://www.hacksplaining.com/prevention/xss-stored>
+<https://www.hacksplaining.com/prevention/xss-stored>\
+<https://owasp.org/www-community/attacks/csrf>\
+<https://brightsec.com/blog/csrf-attack/>\
+<https://www.youtube.com/watch?v=eWEgUcHPle0>
